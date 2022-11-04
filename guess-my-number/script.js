@@ -8,7 +8,6 @@ let gameLost = false;
 
 document.querySelector('.check').addEventListener('click', function() {
     const guess = Number(document.querySelector('.guess').value); 
-    let currentHighScore = highScore; 
 
     if (score == 0){
         return;
@@ -25,11 +24,10 @@ document.querySelector('.check').addEventListener('click', function() {
         document.querySelector('.message').textContent = '🎉 Correct Number!'; 
         document.querySelector('.number').textContent = number;
         score++;
-        highScore += 10;
         console.log('highScore:', highScore);
-        if (currentHighScore < highScore) {
+        if (score > highScore) {
+            highScore = score; 
             document.querySelector('.highscore').textContent = highScore; 
-            currentHighScore = highScore; 
         }
         reset = true; 
         return;
@@ -82,6 +80,16 @@ document.querySelector('.again').addEventListener('click', function() {
         document.querySelector('.score').textContent = score;
     }
 });
+
+function guessCorrect() {
+    
+}
+
+function guessToHighOrLow(guess, number) {
+    if (guess != number) {
+
+    }
+}
 
 function generateNewNumber() {
     number = Math.trunc(Math.random()*20) + 1;
