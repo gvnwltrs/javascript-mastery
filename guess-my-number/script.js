@@ -21,6 +21,7 @@ document.querySelector('.check').addEventListener('click', function() {
         document.querySelector('.message').textContent = '⛔ No number!';
     }
     else if (guess == number) {
+        document.querySelector('body').style.backgroundColor = '#60b347';
         document.querySelector('.message').textContent = '🎉 Correct Number!'; 
         document.querySelector('.number').textContent = number;
         score++;
@@ -34,6 +35,7 @@ document.querySelector('.check').addEventListener('click', function() {
         return;
     }
     else if (guess > number) {
+        document.querySelector('body').style.backgroundColor = 'red';
         if (score !== 0) {
             document.querySelector('.message').textContent = 'Too high!'; 
             score--;
@@ -47,6 +49,7 @@ document.querySelector('.check').addEventListener('click', function() {
         }
     }
     else if (guess < number) {
+        document.querySelector('body').style.backgroundColor = 'darkred';
         if (score !== 0) {
             document.querySelector('.message').textContent = 'Too low!'; 
             score--;
@@ -71,6 +74,7 @@ document.querySelector('.check').addEventListener('click', function() {
 document.querySelector('.again').addEventListener('click', function() {
     generateNewNumber();
     document.querySelector('.message').textContent = "Start guessing...";
+    document.querySelector('body').style.backgroundColor = '#222';
     reset = false;
     if (gameLost) {
         gameLost = false;
@@ -81,9 +85,10 @@ document.querySelector('.again').addEventListener('click', function() {
 
 function generateNewNumber() {
     number = Math.trunc(Math.random()*20) + 1;
+    console.log("new number is:", number);
     document.querySelector('.number').textContent = "?";
     document.querySelector('.message').textContent = "Start guessing...";
-    document.querySelector('.guess').value = ""; 
+    document.querySelector('.guess').value = 0; 
 
 }
 
