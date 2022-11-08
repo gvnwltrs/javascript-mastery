@@ -16,6 +16,7 @@ document.querySelector('.check').addEventListener('click', function() {
         return;
     }
 
+    //TODO: refactor each of these into a single function or two 
     if(!guess) {
         document.querySelector('.message').textContent = '⛔ No number!';
     }
