@@ -19,7 +19,18 @@ function printSomething() {
 
     console.log(string); 
 
-    console.log(this.string); 
+    console.log(this);
 }
 
-printSomething();
+const person = {
+    firstName: 'Dave'
+}
+
+const copyPerson = Object.assign({}, person); 
+let anotherPerson = person; 
+
+person.firstName = 'Jules';
+copyPerson.firstName = 'Lahey';
+
+console.log(person); 
+console.log(copyPerson); 
