@@ -4,6 +4,8 @@ let string = "something";
 let size = 50;
 let rotation = 0; 
 
+// DOM Stuff 
+
 document.querySelector('h1').innerText = `This is going to be ${string}`;
 
 document.querySelector('body').addEventListener('click', () => {
@@ -22,30 +24,52 @@ function printSomething() {
     console.log(this);
 }
 
+
+// Creating Object Literals 
 const person = {
-    firstName: 'Dave'
+    firstName: 'Dave',
+    likes: {
+        food: 'pizza',
+        games: 'skyrim',
+        sport: 'basketball'
+    }
 }
 
-const copyPerson = Object.assign({}, person); 
+// Shallow vs. Deep Copies 
+
+// Shallow
 let anotherPerson = person; 
+const copyPerson1 = Object.assign({}, person); 
+const copyPerson2 = {...person}; 
+
+// Deep
+const copyPerson3 = JSON.parse(JSON.stringify(person)); 
 
 person.firstName = 'Jules';
-copyPerson.firstName = 'Lahey';
 anotherPerson.firstName = 'Dorian';
+copyPerson1.firstName = 'Lahey';
+copyPerson1.likes.food = 'cheese'; 
 
-console.log(person); 
-console.log(copyPerson); 
-console.log(anotherPerson); 
+console.log('person:', person); 
+console.log('anotherPerson:', anotherPerson); 
+console.log('copyPerson1:', copyPerson1);
+console.log('copyPerson2:', copyPerson2);  
+console.log('copyPerson3:', copyPerson3);  
 
-
+// More Object Literals 
 const restaurant = {
     name: 'Classico Italiano',
     loc: 'Via Angelo Tavanti 23, Firenze, Italy', 
     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'], 
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic', 'Bread', 'Caprese Salad'],
-    mainMenu: ['Pizza', 'Pasta', 'Risotto']
+    mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    orderItem() {
+        console.log('Coming Soon!'); 
+    }
 }; 
 
+
+// Destructuring Objects and Arrays
 const arr = [2,3,4];
 const a = arr[0];
 const b = arr[1]; 
@@ -62,12 +86,24 @@ console.log(name, loc, categories);
 
 console.log(name);
 
+
+// Nullish Coalescing Operator 
 const cat = null;
 
 console.log(cat ?? 'it does not exist!!'); 
 
+
+// For-of Loops 
 for (const item of restaurant.mainMenu) console.log(item);
 
 for (const categories of restaurant.categories) {
     console.log(categories); 
 }
+
+// Enhanced Object Literals 
+const restaurant2 = {
+    restaurant
+}
+
+console.log(restaurant2.restaurant.categories); 
+
