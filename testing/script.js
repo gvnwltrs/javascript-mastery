@@ -107,3 +107,8 @@ const restaurant2 = {
 
 console.log(restaurant2.restaurant.categories); 
 
+
+// Looping Objects 
+console.log(Object.keys(restaurant));
+
+for (const category of Object.values(restaurant.categories)) console.log('Try this category:', category); 
