@@ -127,4 +127,12 @@ const ordersSet = new Set([
 console.log(ordersSet); 
 
 // Maps 
+const rest = new Map(); 
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy'); 
 
+console.log(rest.set(2, 'Lisbon, Portugal'))
+
+// Manipulation
+const myString = "testing";
+console.log(myString.slice(1,3)); 
