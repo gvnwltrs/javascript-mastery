@@ -8,7 +8,7 @@ document.querySelector('h1').innerText = `This is going to be ${string}`;
 
 document.querySelector('body').addEventListener('click', () => {
     size--;
-    rotation += 25;
+    rotation += 45;
     document.querySelector('h1').style.fontSize = `${size}px`; 
     document.querySelector('h1').style.transitionDuration = `1s`; 
     document.querySelector('h1').style.transform = `rotate(${rotation}deg)`;
@@ -40,7 +40,7 @@ console.log(anotherPerson);
 
 const restaurant = {
     name: 'Classico Italiano',
-    location: 'Via Angelo Tavanti 23, Firenze, Italy', 
+    loc: 'Via Angelo Tavanti 23, Firenze, Italy', 
     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'], 
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic', 'Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto']
@@ -56,3 +56,12 @@ console.log(x, y, z);
 
 const [e, g] = arr;
 console.log(e, g); 
+
+let {name, loc, categories} = restaurant;
+console.log(name, loc, categories); 
+
+console.log(name);
+
+const cat = null;
+
+console.log(cat ?? 'it does not exist!!'); 
