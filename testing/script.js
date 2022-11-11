@@ -156,12 +156,38 @@ console.log(dog);
 // Functions Returning Functions
 
 function myThing1(word) {
-    return function () {
-        console.log(`hello and ${word}`);
+    return function (start) {
+        console.log(`${start} and ${word}`);
     };  
 }
 
 const test = myThing1('goodbye'); 
 
-console.log(test('goodbye')); 
+console.log(test('hello')); 
+
+// Changing This 
+const panther = {
+    eyes: 'brown',
+    whiskers: 4, 
+    meow: 'raaaar!',
+
+    makeNoise() {
+        console.log(`${this.meow}`); 
+    }
+}; 
+
+const kitty = {
+    eyes: 'green', 
+    whiskers: 6, 
+    meow: 'meow...'
+}
+
+const lion = {
+    eyes: 'yellow', 
+    whiskers: 6, 
+    meow: 'roooooooaaaarrrrr!!!!!!!'
+}
+
+panther.makeNoise.call(lion)
+
 
