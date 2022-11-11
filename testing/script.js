@@ -171,8 +171,8 @@ const feline = {
     whiskers: 4, 
     meow: 'raaaar!',
 
-    makeNoise(eyes) {
-        console.log(`His eyes are ${this.eyes} and he sounds like ${this.meow}`); 
+    makeNoise(test) {
+        console.log(`His eyes are ${this.eyes} and he sounds like ${this.meow}, ${test}`); 
     }
 }; 
 
@@ -188,8 +188,12 @@ const lion = {
     meow: 'roooooooaaaarrrrr!!!!!!!'
 }
 
-feline.makeNoise(); 
-feline.makeNoise.call(kitty);
-feline.makeNoise.call(lion);
+feline.makeNoise('help!!'); 
+feline.makeNoise.call(kitty, 'wow.');
+feline.makeNoise.call(lion, 'holy s***!');
+
+const animal = feline.makeNoise.bind(kitty, 'omg!!!'); 
+animal(); 
+
 
 
