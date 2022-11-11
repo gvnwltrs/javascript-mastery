@@ -166,7 +166,7 @@ const test = myThing1('goodbye');
 console.log(test('hello')); 
 
 // Changing This 
-const panther = {
+const feline = {
     eyes: 'brown',
     whiskers: 4, 
     meow: 'raaaar!',
@@ -188,6 +188,8 @@ const lion = {
     meow: 'roooooooaaaarrrrr!!!!!!!'
 }
 
-panther.makeNoise.call(kitty)
+feline.makeNoise(); 
+feline.makeNoise.call(kitty);
+feline.makeNoise.call(lion);
 
 
