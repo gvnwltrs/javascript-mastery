@@ -65,3 +65,9 @@ console.log(name);
 const cat = null;
 
 console.log(cat ?? 'it does not exist!!'); 
+
+for (const item of restaurant.mainMenu) console.log(item);
+
+for (const categories of restaurant.categories) {
+    console.log(categories); 
+}
