@@ -133,6 +133,35 @@ rest.set(1, 'Firenze, Italy');
 
 console.log(rest.set(2, 'Lisbon, Portugal'))
 
-// Manipulation
+// String Manipulation
 const myString = "testing";
 console.log(myString.slice(1,3)); 
+
+// Object Hacking 
+const dog = {
+    type: 'German Shepard'
+}
+
+function makeDogBark(theDog) {
+    theDog.type = "Poodle"; 
+
+    theDog = {action: "woof"}; 
+}
+
+makeDogBark(dog); 
+
+console.log(dog); 
+
+
+// Functions Returning Functions
+
+function myThing1(word) {
+    return function () {
+        console.log(`hello and ${word}`);
+    };  
+}
+
+const test = myThing1('goodbye'); 
+
+console.log(test('goodbye')); 
+
