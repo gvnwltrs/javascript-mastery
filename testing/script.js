@@ -112,3 +112,19 @@ console.log(restaurant2.restaurant.categories);
 console.log(Object.keys(restaurant));
 
 for (const category of Object.values(restaurant.categories)) console.log('Try this category:', category); 
+
+
+// Sets 
+const ordersSet = new Set([
+    'Pasta', 
+    'Pizza', 
+    'Pizza', 
+    'Risotto', 
+    'Pasta', 
+    'Pizza'
+]); 
+
+console.log(ordersSet); 
+
+// Maps 
+
