@@ -195,5 +195,23 @@ feline.makeNoise.call(lion, 'holy s***!');
 const animal = feline.makeNoise.bind(kitty, 'omg!!!'); 
 animal(); 
 
+// Immediately Invoked Function 
+(function() {
+    console.log('it worked!'); 
+})(); 
 
+// Closures 
+const secureBooking = function() {
+    let passengerCount = 0; 
 
+    return function() {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`); 
+    }
+}
+
+const booker = secureBooking(); 
+
+booker(); 
+booker(); 
+booker(); 
