@@ -215,3 +215,22 @@ const booker = secureBooking();
 booker(); 
 booker(); 
 booker(); 
+
+let f;
+
+const go = function() {
+    const a = 23; 
+    f = function() {
+        console.log(a * 2); 
+    }
+}
+
+go(); 
+f();
+
+// Looping Arrays 
+let box = [1, 2, 3, 4, 5]; 
+
+box.forEach(function (element) {
+    console.log(`did something: ${element}` ); 
+}); 
