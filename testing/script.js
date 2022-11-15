@@ -12,7 +12,7 @@ document.querySelector('body').addEventListener('click', () => {
     size--;
     rotation += 45;
     document.querySelector('h1').style.fontSize = `${size}px`; 
-    document.querySelector('h1').style.transitionDuration = `1s`; 
+    document.querySelector('h1').style.transitionDuration = `3s`; 
     document.querySelector('h1').style.transform = `rotate(${rotation}deg)`;
 })
 
@@ -231,6 +231,11 @@ f();
 // Looping Arrays 
 let box = [1, 2, 3, 4, 5]; 
 
-box.forEach(function (element) {
+box.forEach(function (element, i, arr) {
     console.log(`did something: ${element}` ); 
+    console.log(`did something: ${i}` ); 
+    console.log(`did something: ${arr}` ); 
 }); 
+
+// Timers
+setTimeout(() => console.log('again'), 3000); 
