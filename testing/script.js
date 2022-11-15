@@ -16,6 +16,22 @@ document.querySelector('body').addEventListener('click', () => {
     document.querySelector('h1').style.transform = `rotate(${rotation}deg)`;
 })
 
+document.querySelector('.btn1').addEventListener('click', ()=> {
+    alert('this is happening!');
+});
+
+document.querySelector('.btn2').addEventListener('click', ()=> {
+    alert('this is happening too!');
+});
+
+document.querySelector('h1').onmouseover = function () {
+    this.style.color = "#bebebe";
+}
+
+document.querySelector('h1').onmouseleave = function () {
+    this.style.color = "white";
+}
+
 function printSomething() {
     let string = "hello"; 
 
