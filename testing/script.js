@@ -1,6 +1,6 @@
 'use strict';
 
-let string = "something";
+let string = "awesome";
 let size = 50;
 let rotation = 0; 
 
