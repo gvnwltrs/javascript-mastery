@@ -275,3 +275,22 @@ Person.prototype.calcAge = function() {
 
 console.log(steve.calcAge());
    
+console.log(steve.__proto__.__proto__.__proto__); 
+
+// Classes 
+class Animal {
+    constructor(animalName, birthYear) {
+        this.animalName = animalName; 
+        this.birthYear = birthYear; 
+    }
+
+    calcAge() {
+        console.log(2022 - this.birthYear); 
+    }
+}
+
+const boo = new Animal('boo', 1994); 
+
+console.log(boo); 
+
+boo.calcAge(); 
