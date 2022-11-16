@@ -268,6 +268,12 @@ console.log(doug);
 const steve = new Person('Steve', '1966'); 
 console.log(steve); 
 
+Person.yell = function() { 
+    console.log(`heeey ${this.firstName}!!!!`); 
+}
+
+Person.yell(); 
+
 // Prototypes 
 Person.prototype.calcAge = function() { 
     return 2022 - this.birthYear; 
@@ -284,6 +290,10 @@ class Animal {
         this.birthYear = birthYear; 
     }
 
+    static makeNoise() {
+        console.log('....'); 
+    }
+
     calcAge() {
         console.log(2022 - this.birthYear); 
     }
@@ -294,3 +304,16 @@ const boo = new Animal('boo', 1994);
 console.log(boo); 
 
 boo.calcAge(); 
+
+Animal.prototype.saySomething = function() {
+    console.log('something'); 
+}
+
+Animal.moo = function() {
+    console.log('moo!');
+}
+
+boo.saySomething(); 
+
+Animal.moo(); 
+Animal.makeNoise(); 
