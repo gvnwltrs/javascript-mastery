@@ -269,3 +269,9 @@ const steve = new Person('Steve', '1966');
 console.log(steve); 
 
 // Prototypes 
+Person.prototype.calcAge = function() { 
+    return 2022 - this.birthYear; 
+}
+
+console.log(steve.calcAge());
+   
