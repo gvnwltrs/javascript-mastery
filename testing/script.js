@@ -255,3 +255,17 @@ box.forEach(function (element, i, arr) {
 
 // Timers
 setTimeout(() => console.log('again'), 3000); 
+
+// Constructor Functions 
+const Person = function(firstName, birthYear) {
+    this.firstName = firstName; 
+    this.birthYear = birthYear; 
+}
+
+const doug = new Person('Doug', '1974'); 
+console.log(doug); 
+
+const steve = new Person('Steve', '1966'); 
+console.log(steve); 
+
+// Prototypes 
