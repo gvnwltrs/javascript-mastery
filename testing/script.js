@@ -260,6 +260,16 @@ setTimeout(() => console.log('again'), 3000);
 const Person = function(firstName, birthYear) {
     this.firstName = firstName; 
     this.birthYear = birthYear; 
+    this.secretInfo = "???"; 
+}
+
+const Athlete = function() {
+    Person.call(this); 
+    this.action = 'run'; 
+}
+
+Athlete.prototype.doesThis = function() { 
+    console.log(`${this.name} does this: ${this.action}`); 
 }
 
 const doug = new Person('Doug', '1974'); 
@@ -317,3 +327,36 @@ boo.saySomething();
 
 Animal.moo(); 
 Animal.makeNoise(); 
+
+class Snake {
+    constructor() {
+        this.sound = 'hiss';
+    }
+}
+
+const rattleSnake = Object.create(Animal); 
+
+rattleSnake.makeNoise(); 
+
+
+// Class Inheritance 
+class Dude extends Person {
+    constructor(firstName, birthYear) {
+        super(firstName, birthYear); 
+    }
+
+}
+
+const newDude = new Dude('George', '1885'); 
+
+console.log(newDude.calcAge());
+
+class Saint {
+    constructor() {
+
+    }
+}
+
+const newSaint = Object.create(Person.prototype); 
+
+console.log(newSaint.calcAge()); 
