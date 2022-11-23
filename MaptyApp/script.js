@@ -14,39 +14,38 @@ const inputElevation = document.querySelector('.form__input--elevation');
 let map, mapEvent;
 
 class App {
+
     constructor() {
-        
+        this._getPosition(); 
     }
 
     _getPosition() {
         // your vpn will affect where you end up in you leaflet map
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                const {latitude} = position.coords;
-                const {longitude} = position.coords;
-                const coords = [latitude, longitude]; 
-
-                map = L.map('map').setView(coords, 13);
-
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                // open form 
-                map.on('click', function(mapE) {
-                    mapEvent = mapE;
-                    form.classList.remove('hidden');
-                    inputDistance.focus(); 
-                    
-                }); 
-            }, function() {
-                alert('could not get your position')
+            navigator.geolocation.getCurrentPosition(this._loadMap, function() {
+                alert('could not get your position'); 
             });
         }
     }
 
-    _loadMap() {
+    _loadMap(position) {
+        const {latitude} = position.coords;
+        const {longitude} = position.coords;
+        const coords = [latitude, longitude]; 
 
+        map = L.map('map').setView(coords, 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // open form 
+        map.on('click', function(mapE) {
+            mapEvent = mapE;
+            form.classList.remove('hidden');
+            inputDistance.focus(); 
+            
+        }); 
     }
 
     _showForm() {
@@ -62,7 +61,7 @@ class App {
     }
 }
 
-
+const app = new App(); 
 
 form.addEventListener('submit', function(e) {
     e.preventDefault(); 
