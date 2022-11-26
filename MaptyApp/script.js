@@ -1,7 +1,5 @@
 'use strict';
 
-// prettier-ignore
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
@@ -20,7 +18,17 @@ class Workout {
     constructor(coords, distance, duration) {
         this.coords = coords; 
         this.distance = distance;
-        this.duration = duration; 
+        this.duration = duration;
+
+    }
+
+    _setDescription() {
+        // prettier-ignore
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
+        'August', 'September', 'October', 'November', 'December'];
+
+        this.description = `${this.type[0].toUpperCase() + 
+            this.type.slice(1)} on ${this.date.getMonth()} ${this.date.getDate()}`
     }
 }
 
@@ -30,6 +38,7 @@ class Running extends Workout {
         super(coords, distance, duration); 
         this.cadence = cadence; 
         this.calcPace(); 
+        this._setDescription();  
     }
 
     calcPace() {
@@ -45,6 +54,7 @@ class Cycling extends Workout {
         super(coords, distance, duration); 
         this.elevationGain = elevationGain; 
         this.calcSpeed(); 
+        this._setDescription();  
     }
 
     calcSpeed() {
@@ -150,15 +160,16 @@ class App {
         console.log(this.workouts); 
 
         // render workout on map as marker
-        this.renderWorkoutMaker(workout); 
+        this._renderWorkoutMaker(workout); 
 
         // render workout on list
+        this._renderWorkout(workout); 
 
         // hide form + clear input fields 
         inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
     }
 
-    renderWorkoutMaker(workout, type) {
+    _renderWorkoutMaker(workout) {
         console.log(mapEvent)
     
         L.marker(workout.coords).addTo(map)
@@ -168,12 +179,28 @@ class App {
                 minWidth: 100, 
                 autoClose: false, 
                 closeOnClick: false, 
-                className: `${type}-popup`}))
-        .setPopupContent(`
-        ${workout.type.charAt(0).toUpperCase() + 
-            workout.type.slice(1)} Workout for distance of 
+                className: `${workout.type}-popup`}))
+        .setPopupContent(`${workout.description}
+        Workout for distance of 
             ${workout.distance}m`)
         .openPopup();
+    }
+
+    _renderWorkout(workout) {
+        const html = `
+            <li class="workout workout--${workout.type}" data-id="${workout.id}">
+                <h2 class="workout__title">${workout.description}</h2>
+                <div class="workout__details">
+                    <span class="workout__icon">${workout.type == 'running'} ? 🏃‍♂️ : 🚴‍♀️</span>
+                    <span class="workout__value">${workout.distance}</span></span>
+                    <span class="workout__unit">km</span>
+                </div>
+                <div class="workout__details">
+                    <span class="workout__icon">⏱</span>
+                    <span class="workout__value">${workout.duration}</span>
+                    <span class="workout__unit">min</span>
+                </div>
+        `; 
     }
 }
 
