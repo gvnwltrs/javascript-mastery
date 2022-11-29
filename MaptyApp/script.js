@@ -19,7 +19,6 @@ class Workout {
         this.coords = coords; 
         this.distance = distance;
         this.duration = duration;
-
     }
 
     _setDescription() {
@@ -69,16 +68,21 @@ console.log(run1, cycling1);
 
 // App architecture 
 class App {
-
+    // map; 
+    mapZoomLevel = 13; 
+    mapEvent; 
+    workouts = []
     constructor() {
-        this.workouts = []; 
         this._getPosition();
         form.addEventListener('submit', this._newWorkout.bind(this)); 
         
         inputType.addEventListener('change', function() {
             inputElevation.closest('.form__row').classList.toggle('form__row--hidden')
             inputCadence.closest('.form__row').classList.toggle('form__row--hidden')
-        }); 
+        });
+        
+        containerWorkouts.addEventListener('click', this._moveToPopup.bind(this)); 
+        
     }
 
     _getPosition() {
@@ -95,7 +99,7 @@ class App {
         const {longitude} = position.coords;
         const coords = [latitude, longitude]; 
 
-        map = L.map('map').setView(coords, 13);
+        map = L.map('map').setView(coords, this.mapZoomLevel);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -239,6 +243,24 @@ class App {
         }
 
         form.insertAdjacentHTML(`afterend`, html); 
+    }
+
+    _moveToPopup(e) {
+        const workoutEl = e.target.closest('.workout');
+        console.log(workoutEl);  
+
+        if(!workoutEl) return;
+
+        const workout = this.workouts.find(work => work.id === workoutEl.dataset.id); 
+
+        console.log(workout); 
+
+        this.map.setView(workout.coords, this.mapZoomLevel, {
+            animate: true,
+            pan: {
+               duration: 1 
+            }
+        });
     }
 }
 
