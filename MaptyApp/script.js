@@ -14,6 +14,7 @@ let map, mapEvent;
 class Workout {
     date = new Date();
     id = (Date.now() + '').slice(-10); 
+    clicks = 0; 
 
     constructor(coords, distance, duration) {
         this.coords = coords; 
@@ -27,6 +28,10 @@ class Workout {
         'August', 'September', 'October', 'November', 'December'];
 
         this.description = `${this.type[0].toUpperCase() + this.type.slice(1)} on ${months[this.date.getMonth()]} ${this.date.getDate()}`
+    }
+
+    _click() {
+        this.clicks++; 
     }
 }
 
@@ -71,9 +76,15 @@ class App {
     // map; 
     mapZoomLevel = 13; 
     mapEvent; 
-    workouts = []
+    workouts = []; 
+
     constructor() {
         this._getPosition();
+
+        // get data from local storage 
+        this._getLocalStorage(); 
+
+        // attach event handlers 
         form.addEventListener('submit', this._newWorkout.bind(this)); 
         
         inputType.addEventListener('change', function() {
@@ -107,6 +118,10 @@ class App {
 
         // open form 
         map.on('click', this._showForm);
+
+        // this.workouts.forEach(work => {
+        //     this._renderWorkoutMaker(work); 
+        // });
     }
 
     _showForm(mapE) {
@@ -178,6 +193,9 @@ class App {
 
         // hide form + clear input fields 
         this._hideForm(); 
+
+        // set local storage to all workouts 
+        this._setLocalStorage(); 
     }
 
     _renderWorkoutMaker(workout) {
@@ -260,6 +278,28 @@ class App {
             pan: {
                duration: 1 
             }
+        });
+
+        // using the public interface 
+        console.log('bug ->', workout); 
+        workout._click();  
+    }
+
+    _setLocalStorage() { 
+        localStorage.setItem('workouts', JSON.stringify(this.workouts)); 
+    }
+
+    _getLocalStorage() {
+        const data = JSON.parse(localStorage.getItem('workouts')); 
+        console.log(data); 
+
+        if (!data) return; 
+
+        this.workouts = data; 
+
+        this.workouts.forEach(work => {
+            this._renderWorkout(work); 
+            this._renderWorkoutMaker(work); 
         });
     }
 }
