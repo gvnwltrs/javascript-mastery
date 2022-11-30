@@ -255,7 +255,7 @@ class App {
 
         console.log(workout); 
 
-        this.map.setView(workout.coords, this.mapZoomLevel, {
+        map.setView(workout.coords, this.mapZoomLevel, {
             animate: true,
             pan: {
                duration: 1 
