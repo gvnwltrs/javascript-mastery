@@ -86,6 +86,10 @@ class App {
 
         // attach event handlers 
         form.addEventListener('submit', this._newWorkout.bind(this)); 
+        containerWorkouts.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            alert('Delete workout?');
+        });
         
         inputType.addEventListener('change', function() {
             inputElevation.closest('.form__row').classList.toggle('form__row--hidden')
@@ -293,9 +297,11 @@ class App {
             this._renderWorkoutMaker(work); 
         });
     }
+
+    reset() {
+        localStorage.removeItem('workouts'); 
+        location.reload();
+    }
 }
 
 const app = new App(); 
-
-
-
