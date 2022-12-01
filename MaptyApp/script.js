@@ -70,7 +70,6 @@ class Cycling extends Workout {
 
 const run1 = new Running([39, -12], 5.2, 24, 178); 
 const cycling1 = new Cycling([39, -12], 27, 95, 523); 
-console.log(run1, cycling1); 
 
 // App architecture 
 class App {
@@ -184,7 +183,6 @@ class App {
 
         // add new object to workout array 
         this.workouts.push(workout); 
-        console.log(this.workouts); 
 
         // render workout on map as marker
         this._renderWorkoutMaker(workout); 
@@ -200,7 +198,6 @@ class App {
     }
 
     _renderWorkoutMaker(workout) {
-        console.log(mapEvent)
     
         L.marker(workout.coords).addTo(map)
         .bindPopup(
@@ -266,13 +263,10 @@ class App {
 
     _moveToPopup(e) {
         const workoutEl = e.target.closest('.workout');
-        console.log(workoutEl);  
 
         if(!workoutEl) return;
 
         const workout = this.workouts.find(work => work.id === workoutEl.dataset.id); 
-
-        console.log(workout); 
 
         map.setView(workout.coords, this.mapZoomLevel, {
             animate: true,
@@ -281,9 +275,6 @@ class App {
             }
         });
 
-        // using the public interface 
-        console.log('bug ->', workout); 
-        workout._click();  
     }
 
     _setLocalStorage() { 
@@ -292,7 +283,6 @@ class App {
 
     _getLocalStorage() {
         const data = JSON.parse(localStorage.getItem('workouts')); 
-        console.log(data); 
 
         if (!data) return; 
 
