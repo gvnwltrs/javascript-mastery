@@ -35,9 +35,9 @@ const countriesContainer = document.querySelector('.countries');
 //   });
 // }; 
 
-const renderCountry = function(data) {
+const renderCountry = function(data, className= '') {
   const html = `
-    <article class="country">
+    <article class="country ${className}">
       <img class="country__img" src="${data.flags.png}" />
       <div class="country__data">
         <h3 class="country__name">${Object.values(data.name)[0]}</h3>
@@ -82,7 +82,7 @@ const getCountryAndNeighborData = function(country) {
         const [data2] = JSON.parse(this.responseText); 
         console.log(data2); 
 
-        renderCountry(data2); 
+        renderCountry(data2, 'neighbour'); 
       }); 
   });
 }; 
@@ -95,4 +95,23 @@ const getCountryAndNeighborData = function(country) {
 // getCountryData('china'); 
 
 // testing getting country and neighbors 
-getCountryAndNeighborData('usa'); 
+// getCountryAndNeighborData('usa'); 
+
+// setTimeout(() => {
+//   console.log('1 second passed'); 
+// }, 1000); 
+
+// const request = fetch('https://restcountries.com/v3.1/name/portugal');
+// console.log(request); 
+
+const getCountryData = function(country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`).then(function(response) {
+    console.log(response); 
+    return response.json(); 
+  }).then(function(data) {
+    console.log(data); 
+    renderCountry(data[0]); 
+  });
+}
+
+getCountryData('mexico'); 
