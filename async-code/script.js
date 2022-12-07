@@ -36,6 +36,7 @@ const countriesContainer = document.querySelector('.countries');
 // }; 
 
 const renderCountry = function(data, className= '') {
+  console.log(data);
   const html = `
     <article class="country ${className}">
       <img class="country__img" src="${data.flags.png}" />
@@ -115,11 +116,22 @@ const getCountryAndNeighborData = function(country) {
 // }
 
 const getCountryData = function(country) {
-  fetch(`https://restcountries.com/v3.1/name/${country}`).then((response) => {
-    return response.json(); 
-  }).then((data) => {
+  // Country 1
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+  .then(response => response.json())
+  .then(data => {
     renderCountry(data[0]); 
-  });
+    console.log(data);
+    const neighbor = data[0].borders[0];
+    console.log(neighbor);
+
+    if(!neighbor) return;
+    // Country 2 
+    return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+  })
+  .then(response => response.json())
+  .then(data => renderCountry(data[0], 'neighbour'));
+
 }
 
-getCountryData('mexico'); 
+getCountryData('germany'); 
