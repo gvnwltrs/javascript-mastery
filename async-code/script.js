@@ -104,12 +104,20 @@ const getCountryAndNeighborData = function(country) {
 // const request = fetch('https://restcountries.com/v3.1/name/portugal');
 // console.log(request); 
 
+// const getCountryData = function(country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`).then(function(response) {
+//     console.log(response); 
+//     return response.json(); 
+//   }).then(function(data) {
+//     console.log(data); 
+//     renderCountry(data[0]); 
+//   });
+// }
+
 const getCountryData = function(country) {
-  fetch(`https://restcountries.com/v3.1/name/${country}`).then(function(response) {
-    console.log(response); 
+  fetch(`https://restcountries.com/v3.1/name/${country}`).then((response) => {
     return response.json(); 
-  }).then(function(data) {
-    console.log(data); 
+  }).then((data) => {
     renderCountry(data[0]); 
   });
 }
