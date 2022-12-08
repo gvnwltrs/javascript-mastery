@@ -130,8 +130,11 @@ const getCountryData = function(country) {
     return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
   })
   .then(response => response.json())
-  .then(data => renderCountry(data[0], 'neighbour'));
+  .then(data => renderCountry(data[0], 'neighbour'))
+  .catch(err => alert(err));
 
 }
 
-getCountryData('germany'); 
+btn.addEventListener('click', function() {
+  getCountryData('germany'); 
+})
